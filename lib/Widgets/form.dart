@@ -14,6 +14,7 @@ class TaxesForm extends StatefulWidget {
 }
 
 class _TaxesFormState extends State<TaxesForm> {
+  bool _isExpanded = false;
   void save() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -82,9 +83,24 @@ class _TaxesFormState extends State<TaxesForm> {
                       ],
                     ),
                     MonthlySalary(),
-                    const NetOrGross(),
-                    const Exemptions(),
-                    const Deductions(),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isExpanded = !_isExpanded;
+                          });
+                        },
+                        icon: _isExpanded
+                            ? const Icon(
+                                Icons.expand_less,
+                                color: Colors.white,
+                              )
+                            : const Icon(
+                                Icons.expand_more,
+                                color: Colors.white,
+                              )),
+                    _isExpanded ? const NetOrGross() : Container(),
+                    _isExpanded ? const Exemptions() : Container(),
+                    _isExpanded ? const Deductions() : Container(),
                   ],
                 ),
               ),

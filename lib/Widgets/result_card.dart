@@ -14,7 +14,7 @@ class ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.fromLTRB(12, 12, 12, 0),
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
