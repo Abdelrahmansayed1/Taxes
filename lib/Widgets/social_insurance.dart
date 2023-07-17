@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taxes/Widgets/monthly_salary.dart';
 
 int socialInsurance = 0;
 
@@ -11,6 +10,8 @@ class SocialInsurance extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<SocialInsurance> {
+  // Declaring the social insurance variables
+
   bool insured30 = false;
   bool unInsured = false;
   @override
@@ -19,12 +20,13 @@ class _MyWidgetState extends State<SocialInsurance> {
       padding: const EdgeInsetsDirectional.fromSTEB(8, 20, 8, 0),
       child: Card(
         shape: RoundedRectangleBorder(
-          side: const BorderSide(color: Colors.white70, width: 1),
+          side: const BorderSide(color: Color(0xffe2e2f0), width: 2),
           borderRadius: BorderRadius.circular(10),
         ),
         color: Theme.of(context).colorScheme.background,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
+          // Social Insurance entry
           child: Column(children: [
             Text(
               "Social Insurance",
@@ -54,20 +56,20 @@ class _MyWidgetState extends State<SocialInsurance> {
               },
               enabled: (insured30 || unInsured) ? false : true,
               style: (insured30 || unInsured)
-                  ? const TextStyle(color: Colors.white38)
-                  : const TextStyle(color: Colors.white),
+                  ? const TextStyle(color: Colors.black12)
+                  : const TextStyle(color: Colors.black54),
               controller: insured30
                   ? TextEditingController(text: "10900")
                   : TextEditingController(),
               decoration: InputDecoration(
-                labelText: 'Insurance Wage',
+                labelText: 'Social Insurance Salary',
                 labelStyle: Theme.of(context)
                     .textTheme
                     .labelMedium!
                     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: const BorderSide(
-                    color: Colors.white54,
+                    color: Color(0xffe2e2f0),
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(8),
@@ -81,10 +83,11 @@ class _MyWidgetState extends State<SocialInsurance> {
                 ),
               ),
             ),
+            // auto apply  30 %
             ListTile(
               contentPadding: const EdgeInsets.all(0),
               title: Text(
-                "Auto, Apply 30% allowances exempt",
+                "Auto 30% insurance exemption",
                 style: Theme.of(context)
                     .textTheme
                     .labelMedium!
@@ -109,6 +112,9 @@ class _MyWidgetState extends State<SocialInsurance> {
                 },
               ),
             ),
+
+            // auto apply un insured
+
             ListTile(
               contentPadding: const EdgeInsets.all(0),
               title: Text(

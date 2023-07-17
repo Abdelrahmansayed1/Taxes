@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:taxes/Widgets/chart.dart';
-import 'package:taxes/Widgets/social_insurance.dart';
 import '../Widgets/result_card.dart';
 import 'package:taxes/Widgets/deductions.dart';
 import 'package:taxes/Widgets/monthly_salary.dart';

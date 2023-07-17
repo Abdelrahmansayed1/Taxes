@@ -17,10 +17,10 @@ class ResultCard extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: Color(0xFFD2D7E3),
+              color: const Color(0xFFe2e2f0),
             ),
           ),
           child: ListTile(
@@ -34,11 +34,17 @@ class ResultCard extends StatelessWidget {
             ),
             title: Text(
               title,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Colors.black54),
             ),
             trailing: Text(
-              "$amount",
-              style: Theme.of(context).textTheme.bodyMedium,
+              amount,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Colors.black54),
             ),
           ),
         ));

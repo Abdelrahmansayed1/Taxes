@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 int monthlySalary = 0;
 
 class MonthlySalary extends StatefulWidget {
-  MonthlySalary({
+  const MonthlySalary({
     super.key,
   });
 
@@ -26,7 +26,7 @@ class _MonthlySalaryState extends State<MonthlySalary> {
               .copyWith(color: Theme.of(context).colorScheme.onPrimary),
           enabledBorder: UnderlineInputBorder(
             borderSide: const BorderSide(
-              color: Colors.white54,
+              color: Color(0xffe2e2f0),
               width: 2,
             ),
             borderRadius: BorderRadius.circular(8),
@@ -45,7 +45,7 @@ class _MonthlySalaryState extends State<MonthlySalary> {
         style: Theme.of(context)
             .textTheme
             .bodyMedium!
-            .copyWith(color: Colors.white),
+            .copyWith(color: Colors.black45),
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         validator: (value) {
           if (value == null ||

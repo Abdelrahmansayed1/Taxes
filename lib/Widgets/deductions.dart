@@ -1,4 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 int deductions = 0;
@@ -26,7 +25,7 @@ class _DeductionsState extends State<Deductions> {
               .copyWith(color: Theme.of(context).colorScheme.onPrimary),
           enabledBorder: UnderlineInputBorder(
             borderSide: const BorderSide(
-              color: Colors.white54,
+              color: Color(0xffe2e2f0),
               width: 2,
             ),
             borderRadius: BorderRadius.circular(8),
@@ -42,7 +41,7 @@ class _DeductionsState extends State<Deductions> {
         style: Theme.of(context)
             .textTheme
             .bodyMedium!
-            .copyWith(color: Colors.white),
+            .copyWith(color: Colors.black54),
         validator: (value) {
           if (int.tryParse(value!) == null) {
             setState(() {

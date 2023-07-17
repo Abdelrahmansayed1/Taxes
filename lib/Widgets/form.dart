@@ -14,18 +14,17 @@ class TaxesForm extends StatefulWidget {
 }
 
 class _TaxesFormState extends State<TaxesForm> {
+  // Declaring the variables _isexpaded for expanded more icon
+  // and save for calculate button
+
   bool _isExpanded = false;
   void save() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ResultScreen(),
+        builder: (context) => const ResultScreen(),
       ));
     }
-
-    // print(monthlySalary);
-    // print(exemptions);
-    // print(deductions);
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -44,18 +43,22 @@ class _TaxesFormState extends State<TaxesForm> {
               padding: const EdgeInsetsDirectional.fromSTEB(8, 20, 8, 0),
               child: Card(
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.white70, width: 1),
+                  side: const BorderSide(color: Color(0xffe2e2f0), width: 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 color: Theme.of(context).colorScheme.background,
                 child: Column(
                   children: [
+                    // choosing the year of calculating the taxes
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           "Starts From",
-                          style: TextStyle(color: Colors.white54),
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
                         ),
                         const SizedBox(
                           width: 5,
@@ -67,14 +70,14 @@ class _TaxesFormState extends State<TaxesForm> {
                               value: "2023",
                               child: Text(
                                 "2023",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.black45),
                               ),
                             ),
                             DropdownMenuItem(
                               value: "2022",
                               child: Text(
                                 "2022",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.black45),
                               ),
                             )
                           ],
@@ -82,30 +85,44 @@ class _TaxesFormState extends State<TaxesForm> {
                         ),
                       ],
                     ),
-                    MonthlySalary(),
+                    // Gross salary input
+                    const MonthlySalary(),
+
+                    // Net or Gross input
+                    const NetOrGross(),
                     IconButton(
+                        style: ButtonStyle(
+                            iconColor: MaterialStatePropertyAll(
+                                Theme.of(context).colorScheme.primary)),
                         onPressed: () {
                           setState(() {
                             _isExpanded = !_isExpanded;
                           });
                         },
                         icon: _isExpanded
-                            ? const Icon(
+                            ? Icon(
                                 Icons.expand_less,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.primary,
                               )
-                            : const Icon(
+                            : Icon(
                                 Icons.expand_more,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.primary,
                               )),
-                    _isExpanded ? const NetOrGross() : Container(),
                     _isExpanded ? const Exemptions() : Container(),
                     _isExpanded ? const Deductions() : Container(),
                   ],
                 ),
               ),
             ),
+            // social insurance card
+
             const SocialInsurance(),
+            const SizedBox(
+              height: 20,
+            ),
+
+            //The calculate button
+
             ElevatedButton(
               onPressed: save,
               style: ButtonStyle(

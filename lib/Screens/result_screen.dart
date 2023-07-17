@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:taxes/Widgets/deductions.dart';
 import 'package:taxes/Widgets/exemptions.dart';
 import 'package:taxes/Widgets/monthly_salary.dart';
-import 'package:taxes/Widgets/result_card.dart';
 import 'package:taxes/Widgets/result_items.dart';
 import 'package:taxes/Widgets/social_insurance.dart';
 
@@ -14,13 +13,14 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
+  // Calculating the Tax slices
   double employeeSocialSecurity = socialInsurance * 0.11;
   double get taxes {
     double salaryAfterSocial = monthlySalary - employeeSocialSecurity;
-    double taxBasis = salaryAfterSocial - exemptions;
+    double taxBasis = salaryAfterSocial - 1250 - exemptions;
     double taxAnnual = taxBasis * 12;
     double taxesSum = 0;
-    if (taxAnnual < 600000) {
+    if (taxAnnual <= 600000) {
       if (taxAnnual <= 21000) {
         taxesSum += 0;
       } else if ((taxAnnual > 21000) && (taxAnnual <= 30000)) {
@@ -48,6 +48,81 @@ class _ResultScreenState extends State<ResultScreen> {
             (200000 * 0.225) +
             (taxAnnual - 400000) * 0.25;
       }
+    } else if (taxAnnual > 600000 && taxAnnual <= 700000) {
+      if (taxAnnual <= 30000) {
+        taxesSum += taxAnnual * 0.025;
+      } else if ((taxAnnual > 30000) && (taxAnnual <= 45000)) {
+        taxesSum += (30000) * 0.025 + (taxAnnual - 30000) * 0.1;
+      } else if ((taxAnnual > 450000) && (taxAnnual <= 60000)) {
+        taxesSum +=
+            (30000) * 0.025 + (15000) * 0.1 + (taxAnnual - 45000) * 0.15;
+      } else if ((taxAnnual > 60000) && (taxAnnual <= 200000)) {
+        taxesSum += (30000) * 0.025 +
+            (15000) * 0.1 +
+            (15000) * 0.15 +
+            (taxAnnual - 60000) * 0.2;
+      } else if ((taxAnnual > 200000) && (taxAnnual <= 400000)) {
+        taxesSum += (30000) * 0.025 +
+            (15000) * 0.1 +
+            (15000) * 0.15 +
+            (140000) * 0.2 +
+            (taxAnnual - 200000) * 0.225;
+      } else {
+        taxesSum += (30000) * 0.025 +
+            (15000) * 0.1 +
+            (15000) * 0.15 +
+            (140000) * 0.2 +
+            200000 * 0.225 +
+            (taxAnnual - 400000) * 0.25;
+      }
+    } else if (taxAnnual > 700000 && taxAnnual <= 800000) {
+      if (taxAnnual <= 45000) {
+        taxesSum += taxAnnual * 0.1;
+      } else if ((taxAnnual > 45000) && (taxAnnual <= 60000)) {
+        taxesSum += (45000) * 0.1 + (taxAnnual - 45000) * 0.15;
+      } else if ((taxAnnual > 60000) && (taxAnnual <= 200000)) {
+        taxesSum += (45000) * 0.1 + (15000) * 0.15 + (taxAnnual - 60000) * 0.2;
+      } else if ((taxAnnual > 200000) && (taxAnnual <= 400000)) {
+        taxesSum += (45000) * 0.1 +
+            (15000) * 0.15 +
+            (140000) * 0.2 +
+            (taxAnnual - 200000) * 0.225;
+      } else {
+        taxesSum += (45000) * 0.1 +
+            (15000) * 0.15 +
+            (140000) * 0.2 +
+            (200000) * 0.225 +
+            (taxAnnual - 400000) * 0.25;
+      }
+    } else if (taxAnnual > 800000 && taxAnnual < 900000) {
+      if (taxAnnual <= 60000) {
+        taxesSum += taxAnnual * 0.15;
+      } else if ((taxAnnual > 60000) && (taxAnnual <= 200000)) {
+        taxesSum += (60000) * 0.15 + (taxAnnual - 60000) * 0.2;
+      } else if ((taxAnnual > 200000) && (taxAnnual <= 400000)) {
+        taxesSum +=
+            (60000) * 0.15 + (140000) * 0.2 + (taxAnnual - 200000) * 0.225;
+      } else {
+        taxesSum += (60000) * 0.15 +
+            (140000) * 0.2 +
+            (200000) * 0.225 +
+            (taxAnnual - 400000) * 0.25;
+      }
+    } else if (taxAnnual > 900000 && taxAnnual <= 120000) {
+      if (taxAnnual <= 200000) {
+        taxesSum += taxAnnual * 0.2;
+      } else if ((taxAnnual > 200000) && (taxAnnual <= 400000)) {
+        taxesSum += (200000) * 0.2 + (taxAnnual - 200000) * 0.225;
+      } else {
+        taxesSum +=
+            (200000) * 0.2 + (200000) * 0.225 + (taxAnnual - 400000) * 0.25;
+      }
+    } else {
+      if (taxAnnual <= 1200000) {
+        taxesSum += taxAnnual * 0.25;
+      } else {
+        taxesSum += 1200000 * 0.25 + (taxAnnual - 1200000) * 0.275;
+      }
     }
     double mothlyTax = taxesSum / 12;
     return mothlyTax;
@@ -61,6 +136,7 @@ class _ResultScreenState extends State<ResultScreen> {
   late double netSalary = monthlySalary - totalDeduction;
   @override
   Widget build(BuildContext context) {
+    // Screen of result scaaffold
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
@@ -83,7 +159,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ))
           ],
           centerTitle: false,
-          elevation: 2,
+          elevation: 0,
         ),
         body: ResultItems(
             employeeSocialSecurity: employeeSocialSecurity,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+bool isGross = true;
+
 class NetOrGross extends StatefulWidget {
   const NetOrGross({super.key});
 
@@ -8,7 +10,6 @@ class NetOrGross extends StatefulWidget {
 }
 
 class _NetOrGrossState extends State<NetOrGross> {
-  bool isGross = true;
   bool _switch1 = true;
   bool _switch2 = false;
   @override
@@ -39,7 +40,7 @@ class _NetOrGrossState extends State<NetOrGross> {
               'Gross',
               style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     fontFamily: 'Outfit',
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 15,
                   ),
             ),
@@ -64,7 +65,7 @@ class _NetOrGrossState extends State<NetOrGross> {
               'Net',
               style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     fontFamily: 'Outfit',
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 15,
                   ),
             ),

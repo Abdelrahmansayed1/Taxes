@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:taxes/Widgets/monthly_salary.dart';
 import 'dart:math';
 
@@ -46,7 +45,7 @@ class _PieState extends State<Pie> {
             xValueMapper: (GDPData data, _) => data.title,
             yValueMapper: (GDPData data, _) => roundDouble(data.gdp, 2),
             dataLabelSettings: const DataLabelSettings(
-                isVisible: true, textStyle: TextStyle(color: Colors.white)))
+                isVisible: true, textStyle: TextStyle(color: Colors.black54)))
       ],
     );
   }

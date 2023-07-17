@@ -25,7 +25,7 @@ class _ExemptionsState extends State<Exemptions> {
               .copyWith(color: Theme.of(context).colorScheme.onPrimary),
           enabledBorder: UnderlineInputBorder(
             borderSide: const BorderSide(
-              color: Colors.white54,
+              color: Color(0xffe2e2f0),
               width: 2,
             ),
             borderRadius: BorderRadius.circular(8),
@@ -41,7 +41,7 @@ class _ExemptionsState extends State<Exemptions> {
         style: Theme.of(context)
             .textTheme
             .bodyMedium!
-            .copyWith(color: Colors.white),
+            .copyWith(color: Colors.black54),
         validator: (value) {
           if (int.tryParse(value!) == null) {
             setState(() {
@@ -59,7 +59,6 @@ class _ExemptionsState extends State<Exemptions> {
               exemptions = int.parse(newValue!);
             });
           }
-          // print(exemptions);
         },
       ),
     );

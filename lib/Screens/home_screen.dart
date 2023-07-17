@@ -8,6 +8,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
+
+      // Appbar and it's component
+
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Text(
@@ -23,13 +26,16 @@ class HomeScreen extends StatelessWidget {
           IconButton(
               onPressed: () {},
               icon: Icon(
-                Icons.more_vert_outlined,
+                Icons.more_horiz,
                 color: Theme.of(context).colorScheme.onPrimary,
               ))
         ],
         centerTitle: false,
-        elevation: 2,
+        elevation: 0,
       ),
+
+      // Going to taxes form that validate user input
+
       body: const TaxesForm(),
     );
   }
