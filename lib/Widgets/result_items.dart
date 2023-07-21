@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taxes/Widgets/chart.dart';
+import 'package:taxes/Widgets/net_or_gross.dart';
 import '../Widgets/result_card.dart';
 import 'package:taxes/Widgets/deductions.dart';
 import 'package:taxes/Widgets/monthly_salary.dart';
@@ -10,13 +11,15 @@ class ResultItems extends StatelessWidget {
   final double martyrsFund;
   final double totalDeduction;
   final double netSalary;
+  final double grossUp;
   const ResultItems(
       {super.key,
       required this.employeeSocialSecurity,
       required this.taxes,
       required this.martyrsFund,
       required this.totalDeduction,
-      required this.netSalary});
+      required this.netSalary,
+      required this.grossUp});
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +32,24 @@ class ResultItems extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              ResultCard(
-                title: "Gross Salary",
-                amount: monthlySalary.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
-              ),
+              isGross
+                  ? ResultCard(
+                      title: "Gross Salary",
+                      amount: monthlySalary.toStringAsFixed(2),
+                      asset: "lib/assets/coin (2).png",
+                    )
+                  : ResultCard(
+                      title: "Gross Salary",
+                      amount: (monthlySalary + grossUp).toStringAsFixed(2),
+                      asset: "lib/assets/coin (2).png",
+                    ),
+              isGross
+                  ? Container()
+                  : ResultCard(
+                      title: "Grossing Up",
+                      amount: grossUp.toStringAsFixed(2),
+                      asset: "lib/assets/coin (2).png",
+                    ),
               ResultCard(
                 title: "Deductions",
                 amount: deductions.toStringAsFixed(2),
@@ -56,14 +72,20 @@ class ResultItems extends StatelessWidget {
               ),
               ResultCard(
                 title: "Total deduction",
-                amount: totalDeduction.toStringAsFixed(2),
+                amount: grossUp.toStringAsFixed(2),
                 asset: "lib/assets/coin (2).png",
               ),
-              ResultCard(
-                title: "Net Salary",
-                amount: netSalary.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
-              ),
+              isGross
+                  ? ResultCard(
+                      title: "Net Salary",
+                      amount: netSalary.toStringAsFixed(2),
+                      asset: "lib/assets/coin (2).png",
+                    )
+                  : ResultCard(
+                      title: "Net Salary",
+                      amount: (monthlySalary).toStringAsFixed(2),
+                      asset: "lib/assets/coin (2).png",
+                    ),
               Pie(
                 netSalary: netSalary,
                 socialInsurance: employeeSocialSecurity,

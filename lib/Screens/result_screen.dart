@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taxes/Widgets/deductions.dart';
 import 'package:taxes/Widgets/exemptions.dart';
 import 'package:taxes/Widgets/monthly_salary.dart';
+import 'package:taxes/Widgets/net_or_gross.dart';
 import 'package:taxes/Widgets/result_items.dart';
 import 'package:taxes/Widgets/social_insurance.dart';
 
@@ -134,6 +135,40 @@ class _ResultScreenState extends State<ResultScreen> {
       deductions + employeeSocialSecurity + taxes + martyrsFund;
 
   late double netSalary = monthlySalary - totalDeduction;
+
+  double get taxGrossUp {
+    double taxAnnual = (monthlySalary * 12) - 15000;
+    double grossingUp = 0;
+    if (taxAnnual <= 21000) {
+      grossingUp += 0;
+    } else if (taxAnnual > 21000 && taxAnnual <= 29775) {
+      grossingUp += (taxAnnual * 100 / 97.5) - 525 - 13.461538461539;
+    } else if (taxAnnual > 29775 && taxAnnual <= 43275) {
+      grossingUp += (taxAnnual * 100 / 90) - 2775 - 308.333333333336;
+    } else if (taxAnnual > 43275 && taxAnnual <= 56025) {
+      grossingUp += (taxAnnual * 100 / 85) - 5025 - 886.76470588235;
+    } else if (taxAnnual > 56025 && taxAnnual <= 168025) {
+      grossingUp += (taxAnnual * 100 / 80) - 8025 - 2006.25;
+    } else if (taxAnnual > 168025 && taxAnnual <= 323025) {
+      grossingUp += (taxAnnual * 100 / 77.5) - 13025 - 3781.45161290321;
+    } else if (taxAnnual > 323025 && taxAnnual <= 473025) {
+      grossingUp += (taxAnnual * 100 / 75) - 23025 - 7675;
+    } else if (taxAnnual > 473025 && taxAnnual <= 547500) {
+      grossingUp += (taxAnnual * 100 / 75) - 22500 - 7500;
+    } else if (taxAnnual > 547500 && taxAnnual <= 620250) {
+      grossingUp += (taxAnnual * 100 / 75) - 20250 - 6750;
+    } else if (taxAnnual > 620250 && taxAnnual <= 693000) {
+      grossingUp += (taxAnnual * 100 / 75) - 18000 - 6000;
+    } else if (taxAnnual > 693000) {
+      grossingUp += (taxAnnual * 100 / 75) - 15000 - 5000;
+    }
+    double grossing = (grossingUp - taxAnnual) / 12;
+    return grossing;
+  }
+
+  late double grossingUpTaxAndSocial =
+      taxGrossUp + employeeSocialSecurity + martyrsFund;
+
   @override
   Widget build(BuildContext context) {
     // Screen of result scaaffold
@@ -161,11 +196,22 @@ class _ResultScreenState extends State<ResultScreen> {
           centerTitle: false,
           elevation: 0,
         ),
-        body: ResultItems(
-            employeeSocialSecurity: employeeSocialSecurity,
-            taxes: taxes,
-            martyrsFund: martyrsFund,
-            totalDeduction: totalDeduction,
-            netSalary: netSalary));
+        body: isGross
+            ? ResultItems(
+                employeeSocialSecurity: employeeSocialSecurity,
+                taxes: taxes,
+                martyrsFund: martyrsFund,
+                totalDeduction: totalDeduction,
+                netSalary: netSalary,
+                grossUp: 0,
+              )
+            : ResultItems(
+                employeeSocialSecurity: employeeSocialSecurity,
+                taxes: taxGrossUp,
+                martyrsFund: martyrsFund,
+                totalDeduction: totalDeduction,
+                netSalary: netSalary,
+                grossUp: grossingUpTaxAndSocial,
+              ));
   }
 }

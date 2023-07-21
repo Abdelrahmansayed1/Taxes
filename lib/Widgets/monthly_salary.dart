@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-int monthlySalary = 0;
+late int monthlySalary;
 
 class MonthlySalary extends StatefulWidget {
   const MonthlySalary({

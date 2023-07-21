@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-int socialInsurance = 0;
+late int socialInsurance;
 
 class SocialInsurance extends StatefulWidget {
   const SocialInsurance({super.key});
