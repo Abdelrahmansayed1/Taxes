@@ -177,13 +177,11 @@ class _ResultScreenState extends State<ResultScreen> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.background,
           title: Text(
-            'Taxes EG',
-            textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  fontFamily: 'Outfit',
-                  color: Theme.of(context).colorScheme.onPrimary,
-                  fontSize: 22,
-                ),
+            'Egypt Taxes',
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(color: Theme.of(context).colorScheme.onPrimary),
           ),
           actions: [
             IconButton(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-int deductions = 0;
+double deductions = 0;
 
 class Deductions extends StatefulWidget {
   const Deductions({super.key});
@@ -43,11 +43,11 @@ class _DeductionsState extends State<Deductions> {
             .bodyMedium!
             .copyWith(color: Colors.black54),
         validator: (value) {
-          if (int.tryParse(value!) == null) {
+          if (double.tryParse(value!) == null) {
             setState(() {
               deductions = 0;
             });
-          } else if (int.tryParse(value)! < 0) {
+          } else if (double.tryParse(value)! < 0) {
             return "Deductions must be a valid number";
           }
         },
@@ -56,7 +56,7 @@ class _DeductionsState extends State<Deductions> {
             newValue = "0";
           } else {
             setState(() {
-              deductions = int.parse(newValue!);
+              deductions = double.parse(newValue!);
             });
           }
           // print(deductions);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-late int monthlySalary;
+late double monthlySalary;
 
 class MonthlySalary extends StatefulWidget {
   const MonthlySalary({
@@ -50,14 +50,14 @@ class _MonthlySalaryState extends State<MonthlySalary> {
         validator: (value) {
           if (value == null ||
               value.isEmpty ||
-              int.tryParse(value) == null ||
-              int.tryParse(value)! <= 0) {
+              double.tryParse(value) == null ||
+              double.tryParse(value)! <= 0) {
             return "Salary must be a valid number";
           }
         },
         onSaved: (newValue) {
           setState(() {
-            monthlySalary = int.parse(newValue!);
+            monthlySalary = double.parse(newValue!);
           });
         },
       ),

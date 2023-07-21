@@ -28,7 +28,7 @@ class ResultCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 asset,
-                height: 50,
+                height: 40,
                 fit: BoxFit.fill,
               ),
             ),

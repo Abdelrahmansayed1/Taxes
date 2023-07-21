@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-late int socialInsurance;
+late double socialInsurance;
 
 class SocialInsurance extends StatefulWidget {
   const SocialInsurance({super.key});
@@ -36,12 +36,13 @@ class _MyWidgetState extends State<SocialInsurance> {
                   .copyWith(color: Theme.of(context).colorScheme.onPrimary),
             ),
             TextFormField(
+              keyboardType: TextInputType.number,
               validator: (value) {
-                if (int.tryParse(value!) == null) {
+                if (double.tryParse(value!) == null) {
                   setState(() {
                     socialInsurance = 0;
                   });
-                } else if (int.tryParse(value)! < 0) {
+                } else if (double.tryParse(value)! < 0) {
                   return "social insurance must be a valid number";
                 }
               },
@@ -50,7 +51,7 @@ class _MyWidgetState extends State<SocialInsurance> {
                   newValue = "0";
                 } else {
                   setState(() {
-                    socialInsurance = int.parse(newValue!);
+                    socialInsurance = double.parse(newValue!);
                   });
                 }
               },

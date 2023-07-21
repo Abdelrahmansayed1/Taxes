@@ -36,62 +36,70 @@ class ResultItems extends StatelessWidget {
                   ? ResultCard(
                       title: "Gross Salary",
                       amount: monthlySalary.toStringAsFixed(2),
-                      asset: "lib/assets/coin (2).png",
+                      asset: "lib/assets/wage.png",
                     )
                   : ResultCard(
                       title: "Gross Salary",
                       amount: (monthlySalary + grossUp).toStringAsFixed(2),
-                      asset: "lib/assets/coin (2).png",
+                      asset: "lib/assets/wage.png",
                     ),
               isGross
                   ? Container()
                   : ResultCard(
                       title: "Grossing Up",
                       amount: grossUp.toStringAsFixed(2),
-                      asset: "lib/assets/coin (2).png",
+                      asset: "lib/assets/trend.png",
                     ),
               ResultCard(
                 title: "Deductions",
                 amount: deductions.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
+                asset: "lib/assets/deduction.png",
               ),
               ResultCard(
                 title: "Social Insurance",
                 amount: employeeSocialSecurity.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
+                asset: "lib/assets/social-security.png",
               ),
               ResultCard(
                 title: "Taxes",
                 amount: taxes.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
+                asset: "lib/assets/taxes.png",
               ),
               ResultCard(
                 title: "Martyrs' Fund",
                 amount: martyrsFund.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
+                asset: "lib/assets/donation.png",
               ),
-              ResultCard(
-                title: "Total deduction",
-                amount: grossUp.toStringAsFixed(2),
-                asset: "lib/assets/coin (2).png",
-              ),
+              isGross
+                  ? ResultCard(
+                      title: "Total deduction",
+                      amount: totalDeduction.toStringAsFixed(2),
+                      asset: "lib/assets/cost.png",
+                    )
+                  : ResultCard(
+                      title: "Total deduction",
+                      amount: grossUp.toStringAsFixed(2),
+                      asset: "lib/assets/cost.png",
+                    ),
               isGross
                   ? ResultCard(
                       title: "Net Salary",
                       amount: netSalary.toStringAsFixed(2),
-                      asset: "lib/assets/coin (2).png",
+                      asset: "lib/assets/wage.png",
                     )
                   : ResultCard(
                       title: "Net Salary",
                       amount: (monthlySalary).toStringAsFixed(2),
-                      asset: "lib/assets/coin (2).png",
+                      asset: "lib/assets/wage.png",
                     ),
-              Pie(
-                netSalary: netSalary,
-                socialInsurance: employeeSocialSecurity,
-                deductions: deductions.toDouble(),
-                taxes: taxes,
-              )
+              isGross
+                  ? Pie(
+                      netSalary: netSalary,
+                      socialInsurance: employeeSocialSecurity,
+                      deductions: deductions.toDouble(),
+                      taxes: taxes,
+                    )
+                  : Container()
             ],
           ),
         ],

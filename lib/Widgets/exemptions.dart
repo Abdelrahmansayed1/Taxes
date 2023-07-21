@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-int exemptions = 0;
+double exemptions = 0;
 
 class Exemptions extends StatefulWidget {
   const Exemptions({super.key});
@@ -43,11 +43,11 @@ class _ExemptionsState extends State<Exemptions> {
             .bodyMedium!
             .copyWith(color: Colors.black54),
         validator: (value) {
-          if (int.tryParse(value!) == null) {
+          if (double.tryParse(value!) == null) {
             setState(() {
               exemptions = 0;
             });
-          } else if (int.tryParse(value)! < 0) {
+          } else if (double.tryParse(value)! < 0) {
             return "Exemption must be a valid number";
           }
         },
@@ -56,7 +56,7 @@ class _ExemptionsState extends State<Exemptions> {
             newValue = "0";
           } else {
             setState(() {
-              exemptions = int.parse(newValue!);
+              exemptions = double.parse(newValue!);
             });
           }
         },

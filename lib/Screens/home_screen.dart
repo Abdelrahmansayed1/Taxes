@@ -13,14 +13,24 @@ class HomeScreen extends StatelessWidget {
 
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
-        title: Text(
-          'Taxes EG',
-          textAlign: TextAlign.start,
-          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontFamily: 'Outfit',
-                color: Theme.of(context).colorScheme.onPrimary,
-                fontSize: 22,
-              ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'lib/assets/45ae405a-e7e0-4f32-9d3d-c74e03f7e713.png',
+              fit: BoxFit.contain,
+              height: 18,
+            ),
+            Container(
+                padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                child: Text(
+                  'Egypt Taxes',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                ))
+          ],
         ),
         actions: [
           IconButton(

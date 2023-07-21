@@ -51,41 +51,49 @@ class _TaxesFormState extends State<TaxesForm> {
                   children: [
                     // choosing the year of calculating the taxes
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Starts From",
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).colorScheme.onBackground),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        DropdownButton(
-                          value: "2023",
-                          items: const [
-                            DropdownMenuItem(
-                              value: "2023",
-                              child: Text(
-                                "2023",
-                                style: TextStyle(color: Colors.black45),
-                              ),
-                            ),
-                            DropdownMenuItem(
-                              value: "2022",
-                              child: Text(
-                                "2022",
-                                style: TextStyle(color: Colors.black45),
-                              ),
-                            )
-                          ],
-                          onChanged: (value) {},
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Starts From",
+                    //       style: TextStyle(
+                    //           color:
+                    //               Theme.of(context).colorScheme.onBackground),
+                    //     ),
+                    //     const SizedBox(
+                    //       width: 5,
+                    //     ),
+                    //     DropdownButton(
+                    //       value: "2023",
+                    //       items: const [
+                    //         DropdownMenuItem(
+                    //           value: "2023",
+                    //           child: Text(
+                    //             "2023",
+                    //             style: TextStyle(color: Colors.black45),
+                    //           ),
+                    //         ),
+                    //         DropdownMenuItem(
+                    //           value: "2022",
+                    //           child: Text(
+                    //             "2022",
+                    //             style: TextStyle(color: Colors.black45),
+                    //           ),
+                    //         )
+                    //       ],
+                    //       onChanged: (value) {},
+                    //     ),
+                    //   ],
+                    // ),
                     // Gross salary input
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "Monthly Salary",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary),
+                    ),
                     const MonthlySalary(),
 
                     // Net or Gross input
