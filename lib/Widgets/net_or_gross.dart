@@ -28,7 +28,7 @@ class _NetOrGrossState extends State<NetOrGross> {
                 setState(() {
                   _switch1 = !_switch1;
                   _switch2 = !_switch2;
-                  isGross = true;
+                  isGross = !isGross;
                 });
               },
               activeColor: Theme.of(context).colorScheme.primary,
@@ -53,7 +53,7 @@ class _NetOrGrossState extends State<NetOrGross> {
                 setState(() {
                   _switch1 = !_switch1;
                   _switch2 = !_switch2;
-                  isGross = false;
+                  isGross = !isGross;
                 });
               },
               activeColor: Theme.of(context).colorScheme.primary,

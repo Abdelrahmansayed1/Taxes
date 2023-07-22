@@ -163,6 +163,10 @@ class _ResultScreenState extends State<ResultScreen> {
       grossingUp += (taxAnnual * 100 / 75) - 15000 - 5000;
     }
     double grossing = (grossingUp - taxAnnual) / 12;
+    if (monthlySalary <= 3000) {
+      grossing = 0;
+    }
+
     return grossing;
   }
 

@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:taxes/Widgets/form.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  Future<void> _launchMap() async {
+    const url = "https://interface-tech.net/";
+    var uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw 'Could not launch';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,7 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: _launchMap,
               icon: Icon(
                 Icons.more_horiz,
                 color: Theme.of(context).colorScheme.onPrimary,
