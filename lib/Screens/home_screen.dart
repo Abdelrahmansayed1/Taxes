@@ -45,8 +45,8 @@ class HomeScreen extends StatelessWidget {
           IconButton(
               onPressed: _launchMap,
               icon: Icon(
-                Icons.more_horiz,
-                color: Theme.of(context).colorScheme.onPrimary,
+                Icons.input,
+                color: Theme.of(context).colorScheme.primary,
               ))
         ],
         centerTitle: false,
