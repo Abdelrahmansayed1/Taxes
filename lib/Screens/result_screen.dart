@@ -5,6 +5,7 @@ import 'package:taxes/Widgets/monthly_salary.dart';
 import 'package:taxes/Widgets/net_or_gross.dart';
 import 'package:taxes/Widgets/result_items.dart';
 import 'package:taxes/Widgets/social_insurance.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -14,8 +15,17 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
+  Future<void> _launchMap() async {
+    const url = "https://interface-tech.net";
+    var uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw 'Could not launch';
+    }
+  }
+
   // Calculating the Tax slices
-  double employeeSocialSecurity = socialInsurance * 0.11;
+  double employeeSocialSecurity =
+      (monthlySalary / 1.3 > 10900) ? 1199 : (monthlySalary / 1.3) * 0.11;
   double get taxes {
     double salaryAfterSocial = monthlySalary - employeeSocialSecurity;
     double taxBasis = salaryAfterSocial - 1250 - exemptions;
@@ -109,7 +119,7 @@ class _ResultScreenState extends State<ResultScreen> {
             (200000) * 0.225 +
             (taxAnnual - 400000) * 0.25;
       }
-    } else if (taxAnnual > 900000 && taxAnnual <= 120000) {
+    } else if (taxAnnual > 900000 && taxAnnual <= 1200000) {
       if (taxAnnual <= 200000) {
         taxesSum += taxAnnual * 0.2;
       } else if ((taxAnnual > 200000) && (taxAnnual <= 400000)) {
@@ -137,7 +147,7 @@ class _ResultScreenState extends State<ResultScreen> {
   late double netSalary = monthlySalary - totalDeduction;
 
   double get taxGrossUp {
-    double taxAnnual = (monthlySalary * 12) - 15000;
+    double taxAnnual = ((monthlySalary + martyrsFund) * 12) - 15000;
     double grossingUp = 0;
     if (taxAnnual <= 21000) {
       grossingUp += 0;
@@ -170,8 +180,13 @@ class _ResultScreenState extends State<ResultScreen> {
     return grossing;
   }
 
+  late double martyrsFund2 =
+      (monthlySalary + taxGrossUp + employeeSocialSecurity) * 0.0005;
+
   late double grossingUpTaxAndSocial =
-      taxGrossUp + employeeSocialSecurity + martyrsFund;
+      (taxGrossUp + employeeSocialSecurity) + martyrsFund2;
+
+  // late double martyrsFund2 = 0.0005 * grossingUpTaxAndSocial;
 
   @override
   Widget build(BuildContext context) {
@@ -189,10 +204,10 @@ class _ResultScreenState extends State<ResultScreen> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: _launchMap,
                 icon: Icon(
-                  Icons.more_vert_outlined,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  Icons.input,
+                  color: Theme.of(context).colorScheme.primary,
                 ))
           ],
           centerTitle: false,
@@ -210,7 +225,7 @@ class _ResultScreenState extends State<ResultScreen> {
             : ResultItems(
                 employeeSocialSecurity: employeeSocialSecurity,
                 taxes: taxGrossUp,
-                martyrsFund: martyrsFund,
+                martyrsFund: martyrsFund2,
                 totalDeduction: totalDeduction,
                 netSalary: netSalary,
                 grossUp: grossingUpTaxAndSocial,

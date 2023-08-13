@@ -6,7 +6,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   Future<void> _launchMap() async {
-    const url = "https://interface-tech.net/";
+    const url = "https://interface-tech.net";
     var uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
       throw 'Could not launch';

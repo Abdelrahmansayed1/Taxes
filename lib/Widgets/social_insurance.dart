@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taxes/Widgets/monthly_salary.dart';
 
 late double socialInsurance;
 
@@ -12,7 +13,7 @@ class SocialInsurance extends StatefulWidget {
 class _MyWidgetState extends State<SocialInsurance> {
   // Declaring the social insurance variables
 
-  bool insured30 = false;
+  bool insured30 = true;
   bool unInsured = false;
   @override
   Widget build(BuildContext context) {
@@ -103,6 +104,7 @@ class _MyWidgetState extends State<SocialInsurance> {
                       (insured30 == true && unInsured == false)) {
                     setState(() {
                       insured30 = !insured30;
+                      socialInsurance = monthlySalary / 1.3;
                     });
                   } else if (insured30 == false && unInsured == true) {
                     setState(() {
